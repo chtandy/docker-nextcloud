@@ -2,7 +2,7 @@
 參考資料
 https://blog.wangriyu.wang/2018/05-server-nextcloud.html
 https://hub.docker.com/r/wonderfall/nextcloud/
-
+https://www.jianshu.com/p/f9eaa220d59e
 
 
 ### config.conf 額外設定
