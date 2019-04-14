@@ -1,15 +1,15 @@
 <?php
 $CONFIG = array (
   'datadirectory' => '/data',
-  'apps_paths' => 
+  'apps_paths' =>
   array (
-    0 => 
+    0 =>
     array (
       'path' => '/nextcloud/apps',
       'url' => '/apps',
       'writable' => false,
     ),
-    1 => 
+    1 =>
     array (
       'path' => '/apps2',
       'url' => '/apps2',
@@ -18,13 +18,13 @@ $CONFIG = array (
   ),
   'memcache.local' => '\\OC\\Memcache\\APCu',
   'instanceid' => 'ocadc83b19e7',
-  'passwordsalt' => '7b67Ez1QHflCM5Wd8qTqZzhuNcQd8I',
-  'secret' => 'j6ptCEYrvGCvsNQ38DerfuRwKf059uJQU09vWsyqahwe0+hN',
+  'passwordsalt' => 'g2LR/TFXSoOOKo2jcA+nGtdiT5IgGE',
+  'secret' => 'CcI8jclPu45KIIeNeqAGI2yrgyrb/0RPWcTVJJsrlhP8Rkpo',
   'trusted_domains' =>
   array (
-          0 => 'localhost',
-          1 => '192.168.5.252',
-          2 => '0.0.0.0',
+    0 => '192.168.5.252',
+    1 => 'test.com',
+    2 => '0.0.0.0',
   ),
   'memcache.distributed' => '\OC\Memcache\Redis',
   'memcache.locking' => '\OC\Memcache\Redis',
@@ -32,7 +32,7 @@ $CONFIG = array (
   'redis' => array(
      'host' => 'redis',
      'port' => 6379,
-  ),
+   ),
   'dbtype' => 'mysql',
   'version' => '15.0.5.3',
   'overwrite.cli.url' => 'http://localhost',
@@ -44,4 +44,7 @@ $CONFIG = array (
   'dbuser' => 'nextcloud',
   'dbpassword' => 'supersecretpassword',
   'installed' => true,
+  'mail_from_address' => 'administrator',
+  'logtimezone' => 'Europe/Berlin',
+  'logdateformat' => 'Y-m-d H:i:s',
 );
