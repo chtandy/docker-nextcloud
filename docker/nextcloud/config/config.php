@@ -20,9 +20,11 @@ $CONFIG = array (
   'instanceid' => 'ocadc83b19e7',
   'passwordsalt' => '7b67Ez1QHflCM5Wd8qTqZzhuNcQd8I',
   'secret' => 'j6ptCEYrvGCvsNQ38DerfuRwKf059uJQU09vWsyqahwe0+hN',
-  'trusted_domains' => 
+  'trusted_domains' =>
   array (
-    0 => '0.0.0.0',
+          0 => 'localhost',
+          1 => '192.168.5.252',
+          2 => '0.0.0.0',
   ),
   'memcache.distributed' => '\OC\Memcache\Redis',
   'memcache.locking' => '\OC\Memcache\Redis',
