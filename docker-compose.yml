@@ -25,10 +25,10 @@ services:
       - DB_PASSWORD=supersecretpassword   # nextcloud DB Password
       - DB_HOST=nextcloud-db              # # nextcloud DB Host
     volumes:
-      - ./docker/nextcloud/data:/data
-      - ./docker/nextcloud/config:/config
-      - ./docker/nextcloud/apps:/apps2
-      - ./docker/nextcloud/themes:/nextcloud/themes
+      - /docker/nextcloud/data:/data
+      - /docker/nextcloud/config:/config
+      - /docker/nextcloud/apps:/apps2
+      - /docker/nextcloud/themes:/nextcloud/themes
     #labels:
     #   - reverse.frontend.domain=cloud.example.com    #改为你的域名或IP
     #   - reverse.backend.port=8888
@@ -46,7 +46,7 @@ services:
     image: mariadb:10
     container_name: nextcloud-db
     volumes:
-      - ./docker/nextcloud/db:/var/lib/mysql
+      - /docker/nextcloud/db:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=supersecretpassword   # Mysql root Password
       - MYSQL_DATABASE=nextcloud                  # Init a DataBase Name for nextcloud
@@ -58,7 +58,7 @@ services:
     image: solr:6-alpine
     container_name: solr
     volumes:
-      - ./docker/nextcloud/solr:/opt/solr/server/solr/mycores  ## sudo chmod -R 777 ./docker/nextcloud/solr
+      - /docker/nextcloud/solr:/opt/solr/server/solr/mycores  ## sudo chmod -R 777 ./docker/nextcloud/solr
     entrypoint:
       - docker-entrypoint.sh
       - solr-precreate
@@ -69,4 +69,4 @@ services:
     image: redis:alpine
     container_name: redis
     volumes:
-      - ./docker/nextcloud/redis:/data
+      - /docker/nextcloud/redis:/data
