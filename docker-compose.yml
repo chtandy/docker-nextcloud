@@ -2,7 +2,8 @@ version: '3'
 
 networks:
   nextcloud_network:
-    external: false
+    #external: false
+    driver: bridge
 
 services:
   nextcloud:
