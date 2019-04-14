@@ -29,5 +29,5 @@ https://www.jianshu.com/p/f9eaa220d59e
 ### 額外設定
 ```
 sudo chmod -R 777 /docker/nextcloud/solr
-sudo chown root:root docker
+sudo chown -R root:root docker
 ```
