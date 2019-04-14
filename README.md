@@ -26,3 +26,5 @@ https://www.jianshu.com/p/f9eaa220d59e
   2 => '192.168.10.155'
   ),
 ```
+sudo chmod -R 777 /docker/nextcloud/solr
+sudo chown root:root docker
