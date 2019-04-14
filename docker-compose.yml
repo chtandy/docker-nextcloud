@@ -28,10 +28,10 @@ services:
       - DB_PASSWORD=supersecretpassword
       - DB_HOST=nextcloud-db
     volumes:
-      - /docker/nextcloud/data:/data
-      - /docker/nextcloud/config:/config
-      - /docker/nextcloud/apps:/apps2
-      - /docker/nextcloud/themes:/nextcloud/themes
+      - ./docker/nextcloud/data:/data
+      - ./docker/nextcloud/config:/config
+      - ./docker/nextcloud/apps:/apps2
+      - ./docker/nextcloud/themes:/nextcloud/themes
     expose:
       - 8888
     ports:
@@ -43,7 +43,7 @@ services:
   nextcloud-db:
     image: mariadb:10
     volumes:
-      - /docker/nextcloud/db:/var/lib/mysql
+      - ./docker/nextcloud/db:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=supersecretpassword
       - MYSQL_DATABASE=nextcloud
@@ -57,7 +57,7 @@ services:
     image: solr:6-alpine
     container_name: solr
     volumes:
-      - /docker/nextcloud/solr:/opt/solr/server/solr/mycores
+      - ./docker/nextcloud/solr:/opt/solr/server/solr/mycores
     entrypoint:
       - docker-entrypoint.sh
       - solr-precreate
@@ -70,6 +70,6 @@ services:
     image: redis:alpine
     container_name: redis
     volumes:
-      - /docker/nextcloud/redis:/data
+      - ./docker/nextcloud/redis:/data
     networks:
       - nextcloud_network
