@@ -1,13 +1,9 @@
 version: '3'
-
-networks:
-  nextcloud_network:
-    #external: false
-    driver: bridge
-
+  
 services:
   nextcloud:
     image: wonderfall/nextcloud
+    container_name: nextcloud
     depends_on:
       - nextcloud-db           # If using MySQL
       - solr                   # If using Nextant
@@ -15,56 +11,58 @@ services:
     environment:
       - UID=1000
       - GID=1000
-      - UPLOAD_MAX_SIZE=10G
+      - UPLOAD_MAX_SIZE=10G         # Upload Max Size
       - APC_SHM_SIZE=128M
       - OPCACHE_MEM_SIZE=128
       - CRON_PERIOD=15m
       - TZ=Europe/Berlin
-      - ADMIN_USER=admin            # Don't set to configure through browser
-      - ADMIN_PASSWORD=admin        # Don't set to configure through browser
+      - ADMIN_USER=admin                    # Don't set to configure through browser
+      - ADMIN_PASSWORD=adminpassword        # Don't set to configure through browser
       - DOMAIN=localhost
-      - DB_TYPE=mysql
-      - DB_NAME=nextcloud
-      - DB_USER=nextcloud
-      - DB_PASSWORD=supersecretpassword
-      - DB_HOST=nextcloud-db
+      - DB_TYPE=mysql                     # # nextcloud DB Type
+      - DB_NAME=nextcloud                 # nextcloud DB Name
+      - DB_USER=nextcloud                 # nextcloud DB User
+      - DB_PASSWORD=supersecretpassword   # nextcloud DB Password
+      - DB_HOST=nextcloud-db              # # nextcloud DB Host
     volumes:
       - ./docker/nextcloud/data:/data
       - ./docker/nextcloud/config:/config
       - ./docker/nextcloud/apps:/apps2
       - ./docker/nextcloud/themes:/nextcloud/themes
+    #labels:
+    #   - reverse.frontend.domain=cloud.example.com    #改为你的域名或IP
+    #   - reverse.backend.port=8888
+    #   - reverse.frontend.ssl=true                    #使用HTTPS访问 
+    #   - reverse.frontend.ssltype=ec384
+    #   - reverse.frontend.hsts=false
+    #   - reverse.frontend.headers=false
     expose:
       - 8888
     ports:
       - 8888:8888/tcp
-    networks:
-      - nextcloud_network
 
   # If using MySQL
   nextcloud-db:
     image: mariadb:10
+    container_name: nextcloud-db
     volumes:
       - ./docker/nextcloud/db:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=supersecretpassword
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_PASSWORD=supersecretpassword
-    networks:
-      - nextcloud_network
+      - MYSQL_ROOT_PASSWORD=supersecretpassword   # Mysql root Password
+      - MYSQL_DATABASE=nextcloud                  # Init a DataBase Name for nextcloud
+      - MYSQL_USER=nextcloud                      # Add DB User for nextcloud
+      - MYSQL_PASSWORD=supersecretpassword        # Set DB User Password for nextcloud
 
   # If using Nextant
   solr:
     image: solr:6-alpine
     container_name: solr
     volumes:
-      - ./docker/nextcloud/solr:/opt/solr/server/solr/mycores
+      - ./docker/nextcloud/solr:/opt/solr/server/solr/mycores  ## sudo chmod -R 777 ./docker/nextcloud/solr
     entrypoint:
       - docker-entrypoint.sh
       - solr-precreate
       - nextant
-    networks:
-      - nextcloud_network
 
   # If using Redis
   redis:
@@ -72,5 +70,3 @@ services:
     container_name: redis
     volumes:
       - ./docker/nextcloud/redis:/data
-    networks:
-      - nextcloud_network
