@@ -22,7 +22,7 @@ $CONFIG = array (
   'secret' => 'j6ptCEYrvGCvsNQ38DerfuRwKf059uJQU09vWsyqahwe0+hN',
   'trusted_domains' => 
   array (
-    0 => 'localhost',
+    0 => '0.0.0.0',
   ),
   'memcache.distributed' => '\OC\Memcache\Redis',
   'memcache.locking' => '\OC\Memcache\Redis',
